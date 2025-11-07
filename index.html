@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Générateur de contrat employé (local)</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <section class="controls">
+        <h1>Contrat employé — Génération locale</h1>
+        <p>Remplissez les champs puis cliquez sur « Exporter en PDF » (aucun logiciel externe requis).</p>
+
+        <form id="contract-form">
+          <label>
+            Nom de l'employeur
+            <input id="input-employer" type="text" value="Burger Shot Blaine County" required />
+          </label>
+
+          <label>
+            Nom de l'employé
+            <input id="input-employee" type="text" placeholder="Nom Prénom" required />
+          </label>
+
+          <label>
+            Grade recruté (poste)
+            <input id="input-grade" type="text" placeholder="Apprenti / Cuisinier / Serveur" />
+          </label>
+
+          <label>
+            Grade qui recrute
+            <input id="input-recruiting-grade" type="text" placeholder="Gérant / Responsable RH" />
+          </label>
+
+          <label>
+            Date de début
+            <input id="input-start-date" type="text" placeholder="JJ/MM/AAAA" />
+          </label>
+
+          <label>
+            Heures par semaine
+            <input id="input-hours" type="number" min="1" value="15" />
+          </label>
+
+          <label>
+            Logo (optionnel)
+            <input id="input-logo" type="file" accept="image/*" />
+          </label>
+
+          <label>
+            Grade du signataire
+            <input id="input-signatory-grade" type="text" placeholder="Responsable RH" value="Responsable RH" />
+          </label>
+
+          <label>
+            Nom du signataire
+            <input id="input-signatory-name" type="text" placeholder="Garcia Lia" value="Garcia Lia" />
+          </label>
+
+          <div class="actions">
+            <button id="btn-preview" type="button">Mettre à jour l'aperçu</button>
+            <button id="btn-export" type="button" class="primary">Exporter en PDF</button>
+          </div>
+        </form>
+
+        <details class="help">
+          <summary>Le PDF est généré sans logiciel tiers</summary>
+          <p>
+            Le bouton « Exporter en PDF » ouvre la boîte d'impression intégrée du navigateur. Sélectionnez
+            « Enregistrer au format PDF » pour créer le fichier, sans installer wkhtmltopdf ni autre outil.
+          </p>
+        </details>
+      </section>
+
+      <section class="preview">
+        <article class="page" id="contract">
+          <header class="contract-header">
+            <div class="brand">BURGER SHOT BLAINE COUNTY</div>
+            <div class="ribbon">CONTRAT DURÉE INDÉTERMINÉE</div>
+          </header>
+
+          <main class="contract-body">
+            <p>
+              La société <strong><span data-text="employer"></span></strong>, établie à Los Santos, embauche
+              <strong><span data-text="employee"></span></strong> en qualité d'
+              <strong><span data-text="grade"></span></strong> à compter du
+              <strong><span data-text="start_date"></span></strong>, dans le cadre d'un
+              <strong>contrat à durée indéterminée (CDI)</strong>.
+            </p>
+            <p>Une période d'essai de 2 semaines, renouvelable une fois, est prévue afin de permettre à chacune des parties d'évaluer la bonne adaptation au poste.</p>
+            <p>La rémunération brute mensuelle est fixée selon travail, versée à la fin de chaque mois. Le salarié exercera ses fonctions à <strong>temps plein</strong>, soit <strong><span data-text="hours"></span> heures par semaine</strong>, du lundi au dimanche.</p>
+            <p>Sous la responsabilité du <strong><span data-text="recruiting_grade"></span></strong> de la société <strong><span data-text="employer"></span></strong>, vous aurez pour principales missions de participer aux activités du restaurant, notamment la préparation et le service des commandes, la gestion des stocks, ainsi que la satisfaction de la clientèle.</p>
+            <p>Le salarié s'engage à respecter le règlement intérieur de la société, à faire preuve de professionnalisme et à maintenir une confidentialité absolue sur toutes les informations internes traitées dans le cadre de son travail.</p>
+            <p>Le présent contrat est régi par la législation en vigueur à Los Santos. Il entre en application à la date indiquée ci-dessus et reste valable jusqu'à sa rupture conformément aux dispositions légales.</p>
+            <div class="signature">
+              <div><span data-text="signatory_grade">Responsable RH</span></div>
+              <canvas id="signature-canvas" width="400" height="120" aria-label="Signature manuscrite"></canvas>
+            </div>
+          </main>
+          <div class="contract-logo" id="contract-logo-wrapper">
+            <img id="contract-logo-img" src="logo.png" alt="" />
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <script src="assets/app.js"></script>
+  </body>
+</html>
